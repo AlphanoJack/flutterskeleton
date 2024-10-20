@@ -6,6 +6,7 @@ import 'package:uuid/uuid.dart';
 enum ImageType {
   profileImage,
   chat,
+
 }
 
 abstract class StorageRepository {
