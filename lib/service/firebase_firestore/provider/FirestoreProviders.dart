@@ -16,3 +16,9 @@ final firestoreUseCaseProvider = Provider<FirestoreUseCase>((ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return FirestoreUseCase(firestoreRepository, authRepository);
 });
+
+final profileImageStreamProvider = StreamProvider.autoDispose.family<String, String>((ref, userId){
+  final firestoreUseCase = ref.watch(firestoreUseCaseProvider);
+  return firestoreUseCase.getProfileImage(userId);
+});
+

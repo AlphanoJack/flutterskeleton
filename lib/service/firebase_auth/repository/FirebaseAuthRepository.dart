@@ -19,7 +19,7 @@ class FirebaseAuthRepository implements AuthRepository {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
-
+      talkerLog('AuthRepository(signIn)', '로그인 성공');
       return user!;
     } catch (e) {
       talkerError('FirebaseAuthRepository(signIn)', '로그인 실패', e);
@@ -32,7 +32,7 @@ class FirebaseAuthRepository implements AuthRepository {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-
+      talkerLog('AuthRepository(signUp)', '회원가입 성공');
       return result.user!;
     } catch (e) {
       talkerError('FirebaseAuthRepository(signUp)', '회원가입 실패', e);
@@ -44,6 +44,7 @@ class FirebaseAuthRepository implements AuthRepository {
   Future<void> signOut() async {
     try {
       await _auth.signOut();
+      talkerLog('AuthRepository(signOut)', '로그아웃 성공');
     } catch (e) {
       talkerError('FirebaseAuthRepository(signOut)', '로그아웃 실패', e);
       throw Exception('로그아웃 실패: $e');

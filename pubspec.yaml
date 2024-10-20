@@ -58,12 +58,18 @@ dependencies:
   #Utils
   shared_preferences: ^2.3.2
   dio: ^5.7.0
+  path_provider: ^2.1.4
+  uuid: ^4.5.1
 
   #State management
   flutter_riverpod: ^2.5.3
 
   #Router
   go_router: ^14.3.0
+
+  #Splash Screen
+  lottie: ^3.1.3
+
 
 
 
