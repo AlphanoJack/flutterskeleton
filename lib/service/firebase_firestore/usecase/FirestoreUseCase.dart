@@ -23,4 +23,12 @@ class FirestoreUseCase {
 
     await firestoreRepository.updateUserData(user);
   }
+
+  Stream<String> getProfileImage(String userId) {
+    return firestoreRepository.getProfileImage(userId);
+  }
+
+  Future<void> executeCreateProfileImage(String userId, String profileImageUrl) async {
+    await firestoreRepository.createProfileImage(userId, profileImageUrl);
+  }
 }

@@ -1,7 +1,13 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
+import 'package:skeleton/core/router/RouterProvider.dart';
+import 'package:skeleton/features/first/FirstScreen.dart';
+import 'package:skeleton/features/home/Home.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String name = 'SplashScreen';
@@ -11,25 +17,46 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
-  Map<String, dynamic> _splashConfig = {};
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin{
+  late AnimationController _controller;
+  late Future<Map<String, dynamic>> _splashConfigFuture;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-  }
+    _controller = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    );
 
-  Future<void> _loadSplashConfig() async {
-    final String configString =
-        await rootBundle.loadString('assets/splash/splash.json');
-    setState(() {
-      _splashConfig = json.decode(configString);
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        context.goNamed(FirstScreen.name);
+      }
     });
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Center(
+        child: Lottie.asset(
+          'assets/splash/splash.json',
+          controller: _controller,
+          onLoaded: (composition) {
+            _controller
+              ..duration = composition.duration
+              ..forward();
+          },
+        ),
+      ),
+    );
   }
 }
