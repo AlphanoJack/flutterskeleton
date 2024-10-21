@@ -7,6 +7,8 @@ abstract class FirestoreRepository {
   Stream<String> getUserProfileStream(String userId);
   Future<void> createProfileImage(String userId, String profileImageUrl);
   Future<Map<String, dynamic>?> getUserInfo(String userId);
+  Future<String> getUserName(String userId);
+  Future<String> getUserNickName(String userId);
 }
 
 class FirebaseFirestoreRepository implements FirestoreRepository {
@@ -75,5 +77,29 @@ class FirebaseFirestoreRepository implements FirestoreRepository {
       talkerError('FirestoreReposotory(getUserInfo)', '유저정보를 가져오는데 실패했습니다.', e);
       return null;
     }
+  }
+
+  @override
+  Future<String> getUserName(String userId) {
+    return _firestore.collection('users').doc(userId).get().then((snapshot) {
+      if (snapshot.exists) {
+        talkerLog('FirestoreRepository(getUserName)', '유저 이름 획득 성공: ${snapshot.data()!['name']}');
+        return snapshot.data()!['name'] as String;
+      } else {
+        return 'Unknown User';
+      }
+    });
+  }
+
+  @override
+  Future<String> getUserNickName(String userId) {
+    return _firestore.collection('users').doc(userId).get().then((snapshot) {
+      if (snapshot.exists) {
+        talkerLog('FirestoreRepository(getUserNickName)', '유저 닉네임 획득 성공: ${snapshot.data()!['nickName']}');
+        return snapshot.data()!['nickName'] as String;
+      } else {
+        return 'Unknown User';
+      }
+    });
   }
 }
