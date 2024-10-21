@@ -9,10 +9,9 @@ class SignOutButtonWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return TextButton(
-        onPressed: (){
+        onPressed: () {
           ref.read(authUseCaseProvider).executeSignOut();
         },
-          child: const Text(AppStrings.signOutButtonText)
-    );
+        child: const Text(AppStrings.signOutButtonText));
   }
 }

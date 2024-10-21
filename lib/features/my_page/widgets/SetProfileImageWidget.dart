@@ -4,11 +4,10 @@ import 'package:skeleton/core/media/image_picker/ImagePickerProvider.dart';
 import 'package:skeleton/core/media/widgets/CameraBottomSheet.dart';
 import 'package:skeleton/core/theme/AppColors.dart';
 import 'package:skeleton/service/firebase_auth/FirebaseAuthProvider.dart';
-import 'package:skeleton/service/firebase_firestore/provider/FirestoreProviders.dart';
-import 'package:skeleton/service/firebase_storage/providers/FirebaseStorageProvider.dart';
+import 'package:skeleton/service/firebase_firestore/usecase/CreateProfileImageUseCase.dart';
 import 'package:skeleton/service/firebase_storage/repository/FirebaseStorageRepository.dart';
+import 'package:skeleton/service/firebase_storage/usecase/FirebaseStorageUseCase.dart';
 import 'package:skeleton/utils/AppStringsKorean.dart';
-import 'package:skeleton/utils/BasicSize.dart';
 import 'package:skeleton/utils/Talker.dart';
 
 class SetProfileImageWidget extends ConsumerWidget {
@@ -36,8 +35,7 @@ class SetProfileImageWidget extends ConsumerWidget {
                       heightFactor: 0.3,
                       child: Padding(
                           padding: MediaQuery.of(context).viewInsets,
-                          child: const CameraBottomSheet()
-                      ),
+                          child: const CameraBottomSheet()),
                     );
                   });
             },
@@ -61,32 +59,42 @@ class SetProfileImageWidget extends ConsumerWidget {
               ),
             ),
           ),
-          const SizedBox(height: 8,),
-          TextButton(onPressed: (){
-            imageState.when(
-              data: (image) async {
-                try {
-                  if (image == null) return;
+          const SizedBox(
+            height: 8,
+          ),
+          TextButton(
+              onPressed: () {
+                imageState.when(
+                  data: (image) async {
+                    try {
+                      if (image == null) return;
 
-                  var userId = user!.uid;
+                      var userId = user!.uid;
 
-                  final imageUrl =
-                  await ref.read(firebaseStorageUseCaseProvider)
-                      .executeUploadImageFromApp(image, ImageType.profileImage, fixedFileName: userId);
-                  talkerLog('MyPageWidget/SetProfileImage', '프로필 이미지 Url 생성: $imageUrl');
+                      final imageUrl = await ref
+                          .read(firebaseStorageUseCaseProvider)
+                          .executeUploadImageFromApp(
+                              image, ImageType.profileImage,
+                              fixedFileName: userId);
+                      talkerLog('MyPageWidget/SetProfileImage',
+                          '프로필 이미지 Url 생성: $imageUrl');
 
-                  await ref.read(firestoreUseCaseProvider).executeCreateProfileImage(userId, imageUrl);
-                  talkerLog('MyPageWidget/SetProfileImage', '프로필 이미지 업로드 성공');
-                  Navigator.pop(context);
-                } catch(e) {
-                  talkerError('MyPageWidget/SetProfileImage', '프로필 이미지 업로드 실패', e);
-                }
+                      await ref
+                          .read(createProfileImageProvider)
+                          .execute(userId, imageUrl);
+                      talkerLog(
+                          'MyPageWidget/SetProfileImage', '프로필 이미지 업로드 성공');
+                      Navigator.pop(context);
+                    } catch (e) {
+                      talkerError(
+                          'MyPageWidget/SetProfileImage', '프로필 이미지 업로드 실패', e);
+                    }
+                  },
+                  loading: () => const CircularProgressIndicator(),
+                  error: (_, __) => const Icon(Icons.error),
+                );
               },
-              loading: () => const CircularProgressIndicator(),
-              error: (_, __) => const Icon(Icons.error),
-            );
-          },
-              child: Text("적용하기"))
+              child: const Text("적용하기"))
         ],
       ),
     );

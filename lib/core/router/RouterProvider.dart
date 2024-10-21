@@ -14,70 +14,66 @@ import 'package:skeleton/utils/splash/SplashScreen.dart';
 final routerProvider = Provider<GoRouter>((ref) {
   final getUser = ref.read(authRepositoryProvider);
 
-
   return GoRouter(
-  initialLocation: getUser.getCurrentUser() == null ? '/splash' : '/',
-    redirect: (BuildContext context, GoRouterState state) {
-
-    },
-    routes: [
-      GoRoute(
-        path: '/splash',
-        name: SplashScreen.name,
-        builder: (context, state) => ResponsiveLayoutBuilder(
-          context,
-          const SplashScreen(),
-        ),
-      ),
-      GoRoute(
-        path: '/signup',
-        name: SignUpScreen.name,
-        builder: (context, state) => ResponsiveLayoutBuilder(
-          context,
-          const SignUpScreen(),
-        ),
-      ),
-      GoRoute(
-        path: '/signin',
-        name: LogInScreen.name,
-        builder: (context, state) => ResponsiveLayoutBuilder(
-          context,
-          LogInScreen(),
-        ),
-      ),
-      ShellRoute(
-        builder: (context, state, child) {
-          return ResponsiveLayoutBuilder(
-              context, const HomeScreen()
-          );
-        },
-        routes: [
-          GoRoute(
-            path: '/',
-            name: FirstScreen.name,
-            builder: (context, state) => ResponsiveLayoutBuilder(
-              context,
-              const FirstScreen(),
-            ),
+      initialLocation: getUser.getCurrentUser() == null ? '/splash' : '/',
+      redirect: (BuildContext context, GoRouterState state) {
+        return null;
+      },
+      routes: [
+        GoRoute(
+          path: '/splash',
+          name: SplashScreen.name,
+          builder: (context, state) => ResponsiveLayoutBuilder(
+            context,
+            const SplashScreen(),
           ),
-          GoRoute(
-            path: '/second',
-            name: SecondScreen.name,
-            builder: (context, state) => ResponsiveLayoutBuilder(
-              context,
-              const SecondScreen(),
-            ),
+        ),
+        GoRoute(
+          path: '/signup',
+          name: SignUpScreen.name,
+          builder: (context, state) => ResponsiveLayoutBuilder(
+            context,
+            const SignUpScreen(),
           ),
-          GoRoute(
-            path: '/mypage',
-            name: MyPageScreen.name,
-            builder: (context, state) => ResponsiveLayoutBuilder(
-              context,
-              const MyPageScreen(),
-            ),
+        ),
+        GoRoute(
+          path: '/signin',
+          name: LogInScreen.name,
+          builder: (context, state) => ResponsiveLayoutBuilder(
+            context,
+            LogInScreen(),
           ),
-        ],
-      ),
-    ]
-  );
+        ),
+        ShellRoute(
+          builder: (context, state, child) {
+            return ResponsiveLayoutBuilder(context, const HomeScreen());
+          },
+          routes: [
+            GoRoute(
+              path: '/',
+              name: FirstScreen.name,
+              builder: (context, state) => ResponsiveLayoutBuilder(
+                context,
+                const FirstScreen(),
+              ),
+            ),
+            GoRoute(
+              path: '/second',
+              name: SecondScreen.name,
+              builder: (context, state) => ResponsiveLayoutBuilder(
+                context,
+                const SecondScreen(),
+              ),
+            ),
+            GoRoute(
+              path: '/mypage',
+              name: MyPageScreen.name,
+              builder: (context, state) => ResponsiveLayoutBuilder(
+                context,
+                const MyPageScreen(),
+              ),
+            ),
+          ],
+        ),
+      ]);
 });

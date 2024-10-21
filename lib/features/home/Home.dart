@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:skeleton/core/theme/AppColors.dart';
 import 'package:skeleton/features/first/FirstScreen.dart';
-import 'package:skeleton/features/log_in/LogInScreen.dart';
 import 'package:skeleton/features/my_page/MyPageScreen.dart';
 import 'package:skeleton/features/second/SecondScreen.dart';
 import 'package:skeleton/service/firebase_auth/FirebaseAuthProvider.dart';
@@ -32,7 +30,8 @@ class HomeScreen extends ConsumerWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
-        onTap: (index) async => ref.read(selectedIndexProvider.notifier).state = index,
+        onTap: (index) async =>
+            ref.read(selectedIndexProvider.notifier).state = index,
         type: BottomNavigationBarType.fixed,
         selectedIconTheme: const IconThemeData(color: accentDarkColor),
         selectedItemColor: accentDarkColor,

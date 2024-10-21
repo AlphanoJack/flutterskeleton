@@ -9,10 +9,9 @@ class SignUpButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: (){
+        onPressed: () {
           context.goNamed(SignUpScreen.name);
         },
-          child: const Text(AppStrings.moveToSignUpButtonText)
-    );
+        child: const Text(AppStrings.moveToSignUpButtonText));
   }
 }

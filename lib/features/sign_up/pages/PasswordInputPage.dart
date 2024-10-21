@@ -6,7 +6,8 @@ import 'package:skeleton/utils/AppStringsKorean.dart';
 class PasswordInputPage extends ConsumerWidget {
   final VoidCallback onNext;
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController passwordConfirmController = TextEditingController();
+  final TextEditingController passwordConfirmController =
+      TextEditingController();
   PasswordInputPage({super.key, required this.onNext});
 
   @override
@@ -37,7 +38,9 @@ class PasswordInputPage extends ConsumerWidget {
                 return null;
               },
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             TextFormField(
               controller: passwordConfirmController,
               onChanged: (value) => passwordConfirm.state = value,
@@ -54,9 +57,11 @@ class PasswordInputPage extends ConsumerWidget {
                 return null;
               },
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             TextButton(
-              onPressed: (){
+              onPressed: () {
                 if (passwordController.text == passwordConfirmController.text) {
                   if (formKey.currentState!.validate()) {
                     onNext();
@@ -68,7 +73,6 @@ class PasswordInputPage extends ConsumerWidget {
           ],
         ),
       ),
-
     );
   }
 }

@@ -29,12 +29,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            color: Colors.black,
-            onPressed: () => context.go('/mypage')),
-        title: const Text(AppStrings.signUpAppBarTitle)
-      ),
+          leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              color: Colors.black,
+              onPressed: () => context.go('/mypage')),
+          title: const Text(AppStrings.signUpAppBarTitle)),
       body: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
@@ -46,23 +45,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   )),
           PasswordInputPage(
               onNext: () => _pageController.nextPage(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              )),
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  )),
           NameInputPage(
               onNext: () => _pageController.nextPage(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              )),
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  )),
           NicknameInputPage(
               onNext: () => _pageController.nextPage(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              )),
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  )),
           const SignUpConfirmPage()
         ],
       ),
     );
   }
 }
-

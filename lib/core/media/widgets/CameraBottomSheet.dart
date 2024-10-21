@@ -30,8 +30,7 @@ class CameraBottomSheet extends ConsumerWidget {
               Navigator.pop(context);
               imageState.pickImage(ImageGetType.gallery);
             },
-            child: const Text(AppStrings.galleryBottomSheetButtonText)
-        ),
+            child: const Text(AppStrings.galleryBottomSheetButtonText)),
       ],
     );
   }

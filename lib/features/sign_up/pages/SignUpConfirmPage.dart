@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:skeleton/core/router/RouterProvider.dart';
 import 'package:skeleton/features/my_page/MyPageScreen.dart';
 import 'package:skeleton/features/sign_up/providers/SignUpProviders.dart';
 import 'package:skeleton/service/firebase_auth/FirebaseAuthProvider.dart';
-import 'package:skeleton/service/firebase_firestore/provider/FirestoreProviders.dart';
+import 'package:skeleton/service/firebase_firestore/usecase/UpdateUserDataUseCase.dart';
 import 'package:skeleton/utils/Talker.dart';
 
 class SignUpConfirmPage extends ConsumerWidget {
@@ -30,8 +29,12 @@ class SignUpConfirmPage extends ConsumerWidget {
             ElevatedButton(
               onPressed: () async {
                 try {
-                  await ref.read(authUseCaseProvider).executeSignUp(email, password);
-                  await ref.read(firestoreUseCaseProvider).executeUpdateUserData(email, nickname, nickname, '');
+                  await ref
+                      .read(authUseCaseProvider)
+                      .executeSignUp(email, password);
+                  await ref
+                      .read(updateUserDataUseCaseProvider)
+                      .execute(email, nickname, nickname, '');
                   ref.invalidate(emailProvider);
                   ref.invalidate(passwordProvider);
                   ref.invalidate(nameProvider);
@@ -44,7 +47,6 @@ class SignUpConfirmPage extends ConsumerWidget {
               child: const Text('로그인 화면으로 이동'),
             ),
           ],
-        )
-    );
+        ));
   }
 }

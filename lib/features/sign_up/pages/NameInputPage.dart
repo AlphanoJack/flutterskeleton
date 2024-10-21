@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeleton/features/sign_up/providers/SignUpProviders.dart';
 import 'package:skeleton/utils/AppStringsKorean.dart';
 
-
 class NameInputPage extends ConsumerWidget {
   final VoidCallback onNext;
   final TextEditingController nameController = TextEditingController();
@@ -31,7 +30,7 @@ class NameInputPage extends ConsumerWidget {
             ),
             const SizedBox(height: 20),
             TextButton(
-              onPressed: (){
+              onPressed: () {
                 if (formKey.currentState!.validate()) {
                   onNext();
                 }

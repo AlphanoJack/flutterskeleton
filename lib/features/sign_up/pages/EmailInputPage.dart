@@ -15,40 +15,40 @@ class EmailInputPage extends ConsumerWidget {
     final formKey = GlobalKey<FormState>();
 
     return Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextFormField(
-                controller: emailController,
-                onChanged: (value) => email.state = value,
-                decoration: const InputDecoration(
-                  labelText: AppStrings.emailLabelText,
-                  hintText: AppStrings.emailHintText,
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppStrings.error_emailInput;
-                  } else if (!emailRegExp.hasMatch(value)) {
-                    return AppStrings.wrong_emailInput;
-                  }
-                  return null;
-                },
+      padding: const EdgeInsets.all(16.0),
+      child: Form(
+        key: formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextFormField(
+              controller: emailController,
+              onChanged: (value) => email.state = value,
+              decoration: const InputDecoration(
+                labelText: AppStrings.emailLabelText,
+                hintText: AppStrings.emailHintText,
               ),
-              const SizedBox(height: 20),
-              TextButton(
-                  onPressed: (){
-                    if (formKey.currentState!.validate()) {
-                      onNext();
-                    }
-                  },
-                  child: const Text(AppStrings.nextButtonText),
-              )
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return AppStrings.error_emailInput;
+                } else if (!emailRegExp.hasMatch(value)) {
+                  return AppStrings.wrong_emailInput;
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 20),
+            TextButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  onNext();
+                }
+              },
+              child: const Text(AppStrings.nextButtonText),
+            )
           ],
         ),
-    ),
+      ),
     );
   }
 }
