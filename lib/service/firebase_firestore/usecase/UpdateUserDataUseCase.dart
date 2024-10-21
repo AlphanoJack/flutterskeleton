@@ -25,6 +25,7 @@ class UpdateUserDataUseCase {
 
     final user = UserModel(
         userId: userId,
+        userEmail: email,
         userNickname: userNickname,
         userName: userName,
         userPhone: userPhone,

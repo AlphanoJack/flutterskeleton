@@ -16,6 +16,16 @@ class MyPageScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.myPageAppBarTitle),
+        actions: user != null
+            ? [
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              // 설정 페이지로 이동하는 로직
+            },
+          ),
+        ]
+            : [],  // 빈 리스트를 반환
       ),
       body: user == null ? const NonUserWidget() : const MyPageWidget(),
     );

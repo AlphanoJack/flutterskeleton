@@ -23,7 +23,7 @@ class ProfileCardWidget extends ConsumerWidget {
           return Column(
             children: [
               Text('Name: ${userInfo.userName}', style: white12BoldTextStyle),
-              Text('Email: ${userInfo.email}', style: white12BoldTextStyle),
+              Text('Email: ${userInfo.userEmail}', style: white12BoldTextStyle),
               Text('Nickname: ${userInfo.userNickname}',
                   style: white12BoldTextStyle),
               Text('CreatAt: ${userInfo.createdAt}',

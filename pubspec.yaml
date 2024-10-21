@@ -73,7 +73,8 @@ dependencies:
   #Mock test
   mockito: ^5.4.4
 
-
+  #Notification
+  flutter_local_notifications: ^17.2.3
 
 
   # The following adds the Cupertino Icons font to your application.

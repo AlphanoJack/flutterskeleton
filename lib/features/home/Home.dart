@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeleton/core/theme/AppColors.dart';
+import 'package:skeleton/features/calendar/CalendarScreen.dart';
 import 'package:skeleton/features/first/FirstScreen.dart';
 import 'package:skeleton/features/my_page/MyPageScreen.dart';
-import 'package:skeleton/features/second/SecondScreen.dart';
 import 'package:skeleton/service/firebase_auth/FirebaseAuthProvider.dart';
 import 'package:skeleton/utils/AppStringsKorean.dart';
 
@@ -11,7 +11,7 @@ final selectedIndexProvider = StateProvider<int>((ref) => 0);
 
 final List<Widget> pages = [
   const FirstScreen(),
-  const SecondScreen(),
+  CalendarScreen(),
   const MyPageScreen()
 ];
 
