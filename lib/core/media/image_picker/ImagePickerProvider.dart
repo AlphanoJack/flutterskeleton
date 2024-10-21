@@ -9,8 +9,8 @@ enum ImageGetType { gallery, camera, message }
 
 // ImagePicker 로 가져온 이미지 Provider
 final imagePickerProvider =
-StateNotifierProvider.autoDispose<ImageNotifier, AsyncValue<File?>>(
-      (ref) => ImageNotifier(),
+    StateNotifierProvider.autoDispose<ImageNotifier, AsyncValue<File?>>(
+  (ref) => ImageNotifier(),
 );
 
 class ImageNotifier extends StateNotifier<AsyncValue<File?>> {
@@ -24,11 +24,11 @@ class ImageNotifier extends StateNotifier<AsyncValue<File?>> {
       switch (imageGetType) {
         case ImageGetType.camera:
           pickedFile =
-          await ImagePicker().pickImage(source: ImageSource.camera);
+              await ImagePicker().pickImage(source: ImageSource.camera);
           break;
         case ImageGetType.gallery:
           pickedFile =
-          await ImagePicker().pickImage(source: ImageSource.gallery);
+              await ImagePicker().pickImage(source: ImageSource.gallery);
           break;
         case ImageGetType.message:
           pickedFiles = await ImagePicker().pickMultiImage(

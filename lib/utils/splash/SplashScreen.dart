@@ -1,13 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import 'package:skeleton/core/router/RouterProvider.dart';
 import 'package:skeleton/features/first/FirstScreen.dart';
-import 'package:skeleton/features/home/Home.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String name = 'SplashScreen';
@@ -17,7 +13,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin{
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Future<Map<String, dynamic>> _splashConfigFuture;
 

@@ -7,7 +7,7 @@ final firebaseAuthProvider =
     Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
-  final firebaseAuth = (ref.watch(firebaseAuthProvider));
+  final firebaseAuth = ref.watch(firebaseAuthProvider);
   return FirebaseAuthRepository(firebaseAuth);
 });
 

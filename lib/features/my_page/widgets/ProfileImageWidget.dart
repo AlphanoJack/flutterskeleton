@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeleton/core/theme/AppColors.dart';
 import 'package:skeleton/features/my_page/widgets/SetProfileImageWidget.dart';
 import 'package:skeleton/service/firebase_auth/FirebaseAuthProvider.dart';
-import 'package:skeleton/service/firebase_firestore/provider/FirestoreProviders.dart';
+import 'package:skeleton/service/firebase_firestore/usecase/ProfileImageStreamUseCase.dart';
 import 'package:skeleton/utils/BasicSize.dart';
 
 class ProfileImageWidget extends ConsumerWidget {
@@ -20,7 +20,7 @@ class ProfileImageWidget extends ConsumerWidget {
       );
     }
 
-    final profileImage = ref.watch(profileImageStreamProvider(user.uid));
+    final profileImage = ref.watch(profileImageStream(user.uid));
 
     return profileImage.when(
       data: (imageUrl) {
@@ -29,9 +29,8 @@ class ProfileImageWidget extends ConsumerWidget {
           children: [
             CircleAvatar(
               radius: radius,
-              backgroundImage: imageUrl != null && imageUrl.isNotEmpty
-                  ? NetworkImage(imageUrl)
-                  : null,
+              backgroundImage:
+                  imageUrl.isNotEmpty ? NetworkImage(imageUrl) : null,
               child: imageUrl == null && imageUrl.isNotEmpty
                   ? const Icon(Icons.person, size: radius)
                   : null,

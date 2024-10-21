@@ -10,7 +10,7 @@ class MyPageScreen extends ConsumerWidget {
   const MyPageScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref){
+  Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.read(authRepositoryProvider).getCurrentUser();
 
     return Scaffold(

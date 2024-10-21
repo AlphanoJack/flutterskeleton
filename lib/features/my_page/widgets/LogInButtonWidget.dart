@@ -9,10 +9,9 @@ class LogInButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: (){
+        onPressed: () {
           context.goNamed(LogInScreen.name);
         },
-          child: const Text(AppStrings.moveToLoginButtonText)
-    );
+        child: const Text(AppStrings.moveToLoginButtonText));
   }
 }

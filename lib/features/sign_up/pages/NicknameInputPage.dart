@@ -42,7 +42,7 @@ class NicknameInputPage extends ConsumerWidget {
             ),
             const SizedBox(height: 20),
             TextButton(
-              onPressed: (){
+              onPressed: () {
                 if (formKey.currentState!.validate()) {
                   onNext();
                 }

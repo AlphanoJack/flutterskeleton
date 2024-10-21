@@ -3,7 +3,6 @@ class AppStrings {
   static const String signUpAppBarTitle = '회원가입';
   static const String myPageAppBarTitle = '내 정보';
 
-
   // Sign in & Sign Up Text
   static const String emailHintText = 'email@example.com';
   static const String passwordHintText = '비밀번호를 입력 해주세요.';
@@ -38,7 +37,6 @@ class AppStrings {
   static const String wrong_nicknameInput = '닉네임에 금지된 문자가 포함되어 있습니다.';
   static const String wrong_ageInput = '나이 형식이 올바르지 않습니다.';
 
-
   // Bottom Bar Label Text
   static const String firstScreenText = '1번';
   static const String secondScreenText = '2번';
@@ -51,7 +49,6 @@ class AppStrings {
   static const String signOutButtonText = '로그아웃';
   static const String cameraBottomSheetButtonText = '카메라로 사진 찍기';
   static const String galleryBottomSheetButtonText = '갤러리에서 사진 선택하기';
-
 
   // NonUserScreen Text
   static const String needLoginText = '로그인이 필요한 서비스 입니다.';

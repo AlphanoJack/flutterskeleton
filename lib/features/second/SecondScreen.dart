@@ -12,10 +12,12 @@ class SecondScreen extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Second Screen'),
-          TextButton(onPressed: (){
-            ref.read(authUseCaseProvider).executeSignOut();
-          }, child: Text("로그아웃"))
+          const Text('Second Screen'),
+          TextButton(
+              onPressed: () {
+                ref.read(authUseCaseProvider).executeSignOut();
+              },
+              child: const Text("로그아웃"))
         ],
       ),
     );
