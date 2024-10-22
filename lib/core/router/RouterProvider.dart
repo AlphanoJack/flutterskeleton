@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeleton/features/calendar/CalendarScreen.dart';
+import 'package:skeleton/features/calendar/widgets/CalendarWidget.dart';
 import 'package:skeleton/features/first/FirstScreen.dart';
 import 'package:skeleton/features/home/Home.dart';
 import 'package:skeleton/features/log_in/LogInScreen.dart';
@@ -62,7 +63,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               name: CalendarScreen.name,
               builder: (context, state) => ResponsiveLayoutBuilder(
                 context,
-                CalendarScreen(),
+                const CalendarScreen(),
               ),
             ),
             GoRoute(

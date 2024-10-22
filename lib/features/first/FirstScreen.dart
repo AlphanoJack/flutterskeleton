@@ -6,8 +6,15 @@ class FirstScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('FirstScreen'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Alert Screen'),
+      ),
+      body: Column(
+        children: [
+          Text("알람 표기 ")
+        ],
+      )
     );
   }
 }

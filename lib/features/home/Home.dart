@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeleton/core/theme/AppColors.dart';
 import 'package:skeleton/features/calendar/CalendarScreen.dart';
+import 'package:skeleton/features/calendar/widgets/CalendarWidget.dart';
 import 'package:skeleton/features/first/FirstScreen.dart';
 import 'package:skeleton/features/my_page/MyPageScreen.dart';
+import 'package:skeleton/features/notification_test/NotificationTestScreen.dart';
 import 'package:skeleton/service/firebase_auth/FirebaseAuthProvider.dart';
 import 'package:skeleton/utils/AppStringsKorean.dart';
 
@@ -11,7 +13,8 @@ final selectedIndexProvider = StateProvider<int>((ref) => 0);
 
 final List<Widget> pages = [
   const FirstScreen(),
-  CalendarScreen(),
+  const CalendarScreen(),
+  NotificationTestScreen(),
   const MyPageScreen()
 ];
 
@@ -45,6 +48,10 @@ class HomeScreen extends ConsumerWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.pets),
+            label: AppStrings.secondScreenText,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.alarm),
             label: AppStrings.secondScreenText,
           ),
           BottomNavigationBarItem(
