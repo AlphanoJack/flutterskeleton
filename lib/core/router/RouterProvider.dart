@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeleton/features/calendar/CalendarScreen.dart';
+import 'package:skeleton/features/calendar/widgets/CalendarWidget.dart';
 import 'package:skeleton/features/first/FirstScreen.dart';
 import 'package:skeleton/features/home/Home.dart';
 import 'package:skeleton/features/log_in/LogInScreen.dart';
 import 'package:skeleton/features/my_page/MyPageScreen.dart';
-import 'package:skeleton/features/second/SecondScreen.dart';
 import 'package:skeleton/features/sign_up/SingUpScreen.dart';
 import 'package:skeleton/service/firebase_auth/FirebaseAuthProvider.dart';
 import 'package:skeleton/utils/ResponsiveLayoutBuilder.dart';
@@ -59,10 +60,10 @@ final routerProvider = Provider<GoRouter>((ref) {
             ),
             GoRoute(
               path: '/second',
-              name: SecondScreen.name,
+              name: CalendarScreen.name,
               builder: (context, state) => ResponsiveLayoutBuilder(
                 context,
-                const SecondScreen(),
+                const CalendarScreen(),
               ),
             ),
             GoRoute(

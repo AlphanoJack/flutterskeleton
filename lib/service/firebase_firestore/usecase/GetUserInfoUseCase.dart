@@ -3,7 +3,7 @@ import 'package:skeleton/model/UserDataModel.dart';
 import 'package:skeleton/service/firebase_firestore/provider/FirestoreProviders.dart';
 import 'package:skeleton/service/firebase_firestore/repository/FirestoreRepository.dart';
 
-final getUserInfoProvider = Provider.autoDispose<GetUserInfoUseCase>((ref) {
+final getUserInfoProvider = Provider<GetUserInfoUseCase>((ref) {
   final firestoreRepository = ref.watch(firestoreRepositoryProvider);
   return GetUserInfoUseCase(firestoreRepository);
 });

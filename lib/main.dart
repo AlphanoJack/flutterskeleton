@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skeleton/core/local_notification/LocalNotification.dart';
 import 'package:skeleton/core/router/RouterProvider.dart';
 import 'package:skeleton/core/theme/AppTheme.dart';
 import 'package:skeleton/core/theme/providers/ThemeProvider.dart';
@@ -15,13 +17,19 @@ Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await initializeDateFormatting('en_US', null);
 
+    final notificationService = LocalNotificationService();
+    await notificationService.init();
+
+    await notificationService.requestIOSPermissions();
+
     // Firebase 초기화
     await Firebase.initializeApp();
     // 가로모드 사용 금지 필요시 활성화
-    // SystemChrome.setPreferredOrientations([
-    //   DeviceOrientation.portraitDown,
-    //   DeviceOrientation.portraitUp,
-    // ]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
     runApp(const ProviderScope(child: MyApp()));
   }, (error, stackTrace) {

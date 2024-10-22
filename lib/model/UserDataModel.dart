@@ -9,7 +9,7 @@ class UserDataModel with _$UserDataModel {
   @JsonSerializable(explicitToJson: true)
   factory UserDataModel({
     String? userName,
-    String? email,
+    String? userEmail,
     String? userNickname,
     String? phone,
     @JsonKey(fromJson: _timestampFromJson, toJson: _timestampToJson)

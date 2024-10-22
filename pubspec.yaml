@@ -56,7 +56,6 @@ dependencies:
   camera: ^0.11.0+2
 
   #Utils
-  shared_preferences: ^2.3.2
   dio: ^5.7.0
   path_provider: ^2.1.4
   uuid: ^4.5.1
@@ -73,7 +72,12 @@ dependencies:
   #Mock test
   mockito: ^5.4.4
 
+  #Notification
+  flutter_local_notifications: ^17.2.3
 
+  #internal storage
+  flutter_secure_storage: ^9.2.2
+  shared_preferences: ^2.3.2
 
 
   # The following adds the Cupertino Icons font to your application.
